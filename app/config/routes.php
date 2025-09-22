@@ -42,5 +42,29 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
+//views
+$router->get('/register', 'User_Controller::registerForm');
+$router->get('/', 'Auth_Controller::loginForm');
+$router->get('/home', 'User_Controller::userHomepage');
 
-$router->get('/', 'Welcome::index');
+//Authentication
+
+$router->post('/login', 'Auth_Controller::loginUser');   // handle login
+$router->get('/logout', 'Auth_Controller::logout');  
+
+
+
+//Admin
+
+$router->group('/admin', function() use ($router) {
+
+    $router->get('/user-management', 'Admin_Controller::read');
+    $router->post('/update/{id}', 'Admin_Controller::updateUser');
+    $router->post('/delete/{id}', 'Admin_Controller::deleteUser');
+
+});
+
+
+
+//user
+$router->post('/create-user', 'User_Controller::createUser');
