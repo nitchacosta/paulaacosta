@@ -16,7 +16,7 @@ class User_Controller extends Controller {
 
 
     public function registerForm(){
-        $this->call->view('users/register');
+        $this->call->view('auth/register');
     }
 
 
@@ -130,7 +130,7 @@ class User_Controller extends Controller {
 
              $user_id = $this->session->userdata('user_id');
             $data['user'] = $this->UserModel->find($user_id);
-            $this->call->view('users/dashboard', $data);
+            $this->call->view('auth/dashboard', $data);
     }
 
 }

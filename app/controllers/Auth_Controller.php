@@ -16,9 +16,14 @@ class Auth_Controller extends Controller {
     public function loginForm(){
 
          if ($this->session->userdata('logged_in')) {
-        redirect('/home');
+            if($this->session->userdata('role') == 'admin'){
+                redirect('/admin/user-management');
+
             }else{
-                $this->call->view('users/login');
+                redirect('/home');
+            }
+            }else{
+                $this->call->view('auth/login');
             }
             }
 
@@ -46,11 +51,18 @@ class Auth_Controller extends Controller {
                                 'last_name' => $user['last_name'],
                                 'user_id' => $user['id'],
                                 'username' => $user['username'],
+                                'role' => $user['role'],
                                 'logged_in' => TRUE
                             ]);
 
                             setMessage('success', 'Welcome back, ' . $user['first_name']);
                             redirect(uri:'/home');
+
+                            if($user['role'] == 'admin'){
+                                redirect('/admin/user-management');
+                            }else{
+                                redirect('/home');
+                            }
                         } else {
                             setMessage('danger', 'Invalid password.');
                             redirect(uri:'/');

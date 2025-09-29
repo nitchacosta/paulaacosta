@@ -61,6 +61,7 @@ $router->group('/admin', function() use ($router) {
     $router->get('/user-management', 'Admin_Controller::read');
     $router->post('/update/{id}', 'Admin_Controller::updateUser');
     $router->post('/delete/{id}', 'Admin_Controller::deleteUser');
+    $router->post('/createAdmin', 'Admin_Controller::createAdmin');
 
 });
 
