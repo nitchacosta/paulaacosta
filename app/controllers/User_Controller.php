@@ -16,7 +16,16 @@ class User_Controller extends Controller {
 
 
     public function registerForm(){
-        $this->call->view('auth/register');
+       if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('role') == 'admin') {
+            redirect('admin/user-management');
+        } else {
+            redirect('/home');
+        }
+        
+    }
+
+    $this->load->view('auth/register');
     }
 
 
