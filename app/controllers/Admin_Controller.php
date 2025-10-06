@@ -16,14 +16,14 @@ class Admin_Controller extends Controller {
 
      public function read(){
 
-             if(!$this->session->userdata('logged_in')){
-                return redirect('/')
-             }
+            if (!$this->session->userdata('logged_in')) {
+    return redirect('/');
+}
 
-             if($this->session->userdata('role') !== 'admin'){
-                return redirect('/')
-             }
-                 
+if ($this->session->userdata('role') !== 'admin') {
+    return redirect('/');
+}
+
             $page = 1;
             if(isset($_GET['page']) && ! empty($_GET['page'])) {
                 $page = $this->io->get('page');
