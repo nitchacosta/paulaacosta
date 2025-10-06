@@ -128,6 +128,9 @@ class User_Controller extends Controller {
                 redirect('/');
             }
 
+            if($this->session->userdata('role' == 'admin'){
+            return redirect(site_url('admin/user-management'));
+           }
              $user_id = $this->session->userdata('user_id');
             $data['user'] = $this->UserModel->find($user_id);
             $this->call->view('auth/dashboard', $data);
