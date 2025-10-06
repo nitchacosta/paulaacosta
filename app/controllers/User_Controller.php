@@ -124,16 +124,18 @@ class User_Controller extends Controller {
     }
 
     public function userHomepage(){
-        if(!$this->session->has_userdata('logged_in')){
-                redirect('/');
-            }
+     if (!$this->session->has_userdata('logged_in')) {
+    redirect('/');
+}
 
-            if($this->session->userdata('role' == 'admin'){
-            return redirect(site_url('admin/user-management'));
-           }
-             $user_id = $this->session->userdata('user_id');
-            $data['user'] = $this->UserModel->find($user_id);
-            $this->call->view('auth/dashboard', $data);
+if ($this->session->userdata('role') == 'admin') {
+    redirect('admin/user-management');
+}
+
+$user_id = $this->session->userdata('user_id');
+$data['user'] = $this->UserModel->find($user_id);
+
+$this->call->view('auth/dashboard', $data);
     }
 
 }
