@@ -22,7 +22,8 @@ class Auth_Controller extends Controller {
             }else{
                 redirect('/home');
             }
-            }else{
+            }
+         else{
                 $this->call->view('auth/login');
             }
             }
